@@ -1,14 +1,14 @@
 { "name":        "cluster-server"
-, "description": "cluster-server"
-, "version":     "0.0.1"
+, "description": "Simple multi-CPU cluster server manager for Node 0.6+"
+, "version":     "0.0.2"
 , "main":        "./cluster-server.js"
 , "engines":     {"node": ">= 0.6.0"}
 , "keywords":    ["Cluster", "Restart", "Zero Down Time"]
-, "homepage":    "https://github.com/audreyt/cluster-server"
+, "homepage":    "https://github.com/audreyt/node-cluster-server"
 , "author":      "唐鳳 <audreyt@audreyt.org>"
 , "repository":
   { "type": "git"
-  , "url": "https://github.com/audreyt/cluster-server.git"
+  , "url": "https://github.com/audreyt/node-cluster-server.git"
   }
 , "dependencies": {}
 }
