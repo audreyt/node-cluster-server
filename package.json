@@ -1,6 +1,7 @@
 { "name":        "cluster-server"
 , "description": "cluster-server"
 , "version":     "0.0.1"
+, "main":        "./cluster-server.js"
 , "engines":     {"node": ">= 0.6.0"}
 , "keywords":    ["Cluster", "Restart", "Zero Down Time"]
 , "homepage":    "https://github.com/audreyt/cluster-server"
