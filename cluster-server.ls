@@ -21,8 +21,8 @@ module.exports = !(...args) ->
     MaxCPUs = 6
     MinCPUs = 3
     numCPUs = require \os .cpus!.length
-    numCPUs = MinCPUs if numCPUs < MinCPUs
-    numCPUs = MaxCPUs if numCPUs > MaxCPUs
+    numCPUs >?= MinCPUs
+    numCPUs <?= MaxCPUs
 
     log = (str) -> console.log "[#{new Date!}] #str"
 

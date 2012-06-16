@@ -28,12 +28,8 @@
     MaxCPUs = 6;
     MinCPUs = 3;
     numCPUs = require('os').cpus().length;
-    if (numCPUs < MinCPUs) {
-      numCPUs = MinCPUs;
-    }
-    if (numCPUs > MaxCPUs) {
-      numCPUs = MaxCPUs;
-    }
+    numCPUs >= MinCPUs || (numCPUs = MinCPUs);
+    numCPUs <= MaxCPUs || (numCPUs = MaxCPUs);
     log = function(str){
       return console.log("[" + new Date() + "] " + str);
     };
@@ -85,7 +81,7 @@
     }
     function __fn(){
       var IsExiting, pid, child, __ref;
-      log("Cluster server stopped");
+      log('Cluster server stopped');
       IsExiting = true;
       for (pid in __ref = Workers) {
         child = __ref[pid];
