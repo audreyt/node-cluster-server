@@ -64,7 +64,7 @@ module.exports = !(...args) ->
     for signal in <[ INT TERM KILL QUIT ]>
         process.on "SIG#signal" ->
             log 'Cluster server stopped'
-            IsExiting = true
+            IsExiting := true
             for pid, child of Workers
                 child.kill \SIGTERM
                 child.kill \SIGKILL

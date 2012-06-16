@@ -80,7 +80,7 @@
       process.on("SIG" + signal, __fn);
     }
     function __fn(){
-      var IsExiting, pid, child, __ref;
+      var pid, child, __ref;
       log('Cluster server stopped');
       IsExiting = true;
       for (pid in __ref = Workers) {
