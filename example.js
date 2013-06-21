@@ -1,6 +1,6 @@
 require('./cluster-server')(function() {
   var express = require('express');
-  var app = express.createServer();
+  var app = express();
   app.get('/', function(req, res) {
     return res.send("Hello, World");
   });
