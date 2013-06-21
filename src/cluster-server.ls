@@ -61,7 +61,7 @@ module.exports = !(...args) ->
 
     log "Cluster server started, listening on #host:#port"
 
-    for signal in <[ INT TERM KILL QUIT ]>
+    for signal in <[ INT TERM QUIT ]>
         process.on "SIG#signal" ->
             log 'Cluster server stopped'
             IsExiting := true
