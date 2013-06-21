@@ -1,8 +1,8 @@
 (function(){
-  var __slice = [].slice;
+  var slice$ = [].slice;
   module.exports = function(){
-    var args, cb, port, host, cluster, app, SECONDS, RespawnDelay, HeartbeatInterval, HeartbeatTimeout, MaxCPUs, MinCPUs, numCPUs, log, Workers, IsAlive, IsExiting, spawn, i, sendHeartbeat, signal, __i, __ref, __len;
-    args = __slice.call(arguments);
+    var args, cb, port, host, cluster, app, SECONDS, RespawnDelay, HeartbeatInterval, HeartbeatTimeout, MaxCPUs, MinCPUs, numCPUs, log, Workers, IsAlive, IsExiting, spawn, i$, i, sendHeartbeat, ref$, len$, signal;
+    args = slice$.call(arguments);
     cb = args.pop() || (function(){
       throw 'Must specify a callback';
     }());
@@ -45,12 +45,13 @@
       Workers[child.pid] = child;
       log("Worker spawned (pid " + child.pid + ").");
     };
-    for (i = 1; i <= numCPUs; ++i) {
+    for (i$ = 1; i$ <= numCPUs; ++i$) {
+      i = i$;
       spawn();
     }
-    cluster.on('death', function(__arg){
+    cluster.on('death', function(arg$){
       var pid, exitCode;
-      pid = __arg.pid, exitCode = __arg.exitCode;
+      pid = arg$.pid, exitCode = arg$.exitCode;
       delete Workers[pid];
       if (IsExiting) {
         return;
@@ -59,11 +60,11 @@
       setTimeout(spawn, RespawnDelay);
     });
     sendHeartbeat = function(){
-      var currentTime, pid, child, lastHeartbeat, __ref, __ref1;
+      var currentTime, pid, ref$, child, lastHeartbeat, ref1$;
       currentTime = Date.now();
-      for (pid in __ref = Workers) {
-        child = __ref[pid];
-        lastHeartbeat = (__ref1 = IsAlive[pid]) != null ? __ref1 : Infinity;
+      for (pid in ref$ = Workers) {
+        child = ref$[pid];
+        lastHeartbeat = (ref1$ = IsAlive[pid]) != null ? ref1$ : Infinity;
         if (lastHeartbeat < currentTime - HeartbeatTimeout) {
           log("Worker not responding to ping in " + HeartbeatTimeout / SECONDS + " sec (pid " + pid + "). Killing it...");
           child.kill('SIGTERM');
@@ -75,16 +76,16 @@
     };
     setInterval(sendHeartbeat, HeartbeatInterval);
     log("Cluster server started, listening on " + host + ":" + port);
-    for (__i = 0, __len = (__ref = ['INT', 'TERM', 'KILL', 'QUIT']).length; __i < __len; ++__i) {
-      signal = __ref[__i];
-      process.on("SIG" + signal, __fn);
+    for (i$ = 0, len$ = (ref$ = ['INT', 'TERM', 'QUIT']).length; i$ < len$; ++i$) {
+      signal = ref$[i$];
+      process.on("SIG" + signal, fn$);
     }
-    function __fn(){
-      var pid, child, __ref;
+    function fn$(){
+      var pid, ref$, child;
       log('Cluster server stopped');
       IsExiting = true;
-      for (pid in __ref = Workers) {
-        child = __ref[pid];
+      for (pid in ref$ = Workers) {
+        child = ref$[pid];
         child.kill('SIGTERM');
         child.kill('SIGKILL');
       }
